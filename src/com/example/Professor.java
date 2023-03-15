@@ -1,25 +1,37 @@
 package com.example;
 
 import java.util.LinkedList;
-
 public class Professor extends Identificador {
     private LinkedList<Aluno> alunos;
 
+    private LinkedList<Aula> aulas;
+
     public Professor(String nome, int numero) {
-        this.nome = nome;
-        this.numero = numero;
+        super(nome, numero);
         this.alunos = new LinkedList<>();
+        this.aulas = new LinkedList<>();
     }
 
-    void adicionar(Aula aula){
-
+    public void adicionar(Aula aula){
+        if(aula == null || aulas.contains(aula))
+            return;
+        aulas.add(aula);
+        aula.setProfessor(this);
     }
 
-    void preeencherSumario(Aula aula){
-
+    public void remover(Aula aula){
+        if (aula == null || !aulas.contains(aula))
+            return;
+        aulas.remove(aula);
+        aula.desassociarProfessor();
+    }
+    public void preeencherSumario(Aula aula){
+        if(aula == null || aula.getProfessor() != this || !aula.getSumario().isEmpty())
+            return;
+        aula.adicionarLinhasSumario(String.valueOf(aula.getNumero()));
     }
 
-    void asssinarSumario(Aula aula){
+    public void asssinarSumario(Aula aula){
 
     }
 

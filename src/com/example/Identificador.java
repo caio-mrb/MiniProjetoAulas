@@ -8,4 +8,12 @@ public class Identificador {
         this.nome = nome;
         this.numero = numero;
     }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public String getNome() {
+        return nome;
+    }
 }
